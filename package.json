@@ -1,5 +1,14 @@
 {
-  "author": "Patrick Forringer <patrick@forringer.com>",
+  "contributors": [
+    {
+      "name":  "Patrick Forringer",
+      "email": "patrick@forringer.com"
+    },
+    {
+      "name":  "Tim Morgan",
+      "email": "tim@timmorgan.org"
+    }
+  ],
   "name": "TMC",
   "description": "Scrapper that gathers upcoming tulsa meeting agenda's and creates an iCal feed",
   "version": "0.0.1",
