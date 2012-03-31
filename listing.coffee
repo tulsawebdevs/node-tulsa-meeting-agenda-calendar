@@ -1,12 +1,12 @@
 jsdom = require "jsdom"
 
-class Listing
+module.exports = class Listing
   jquery: 'http://code.jquery.com/jquery-1.7.1.min.js'
 
   events: []
 
   constructor: (@url) ->
-
+    
   metaUrl: (window, a) ->
     a = window.$(a)
     url = a.attr('href')
@@ -25,8 +25,6 @@ class Listing
       if err then throw err
       rows = window.$('#agendaList table>tr:not(:first,:last,:nth-child(2))')
       callback (@eventFromRow(window, row) for row in rows when window.$(row).find('td').length == 3)
-
-module.exports = Listing
 
 unless module.parent
   listing = new Listing('http://cityoftulsa.org/our-city/meeting-agendas/all-agendas.aspx')
