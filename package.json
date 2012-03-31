@@ -1,17 +1,19 @@
 {
   "contributors": [
     {
-      "name":  "Patrick Forringer",
+      "name": "Patrick Forringer",
       "email": "patrick@forringer.com"
     },
     {
-      "name":  "Tim Morgan",
+      "name": "Tim Morgan",
       "email": "tim@timmorgan.org"
     }
   ],
   "name": "TMC",
+  "subdomain": "tulsa-agenda",
   "description": "Scrapper that gathers upcoming tulsa meeting agenda's and creates an iCal feed",
-  "version": "0.0.1",
+  "home": "http://tulsa-agenda.jit.su/",
+  "version": "0.0.1-1",
   "bugs": {
     "url": "https://github.com/tulsawebdevs/node-tulsa-meeting-agenda-calendar/issues"
   },
@@ -22,6 +24,7 @@
   "engines": {
     "node": "~0.6.11"
   },
+  "main": "./server.coffee",
   "scripts": {
     "start": "coffee server.coffee",
     "debug": "coffee -w --nodejs --debug server.coffee",
