@@ -7,11 +7,18 @@ class Listing
 
   constructor: (@url) ->
 
+  metaUrl: (window, a) ->
+    a = window.$(a)
+    url = a.attr('href')
+    url = "http://cityoftulsa.org#{url}" unless url.match(/^https?:/)
+    title: a.html()
+    url: url
+
   eventFromRow: (window, row) ->
     cols  = window.$(row).find('td')
     date:  cols.eq(0).html()
     title: cols.eq(1).html()
-    meta:  cols.eq(2).html()
+    meta:  (@metaUrl(window, a) for a in cols.eq(2).find('a'))
 
   events: (callback) ->
     jsdom.env @url, [@jquery], (err, window) =>
@@ -24,4 +31,4 @@ module.exports = Listing
 unless module.parent
   listing = new Listing('http://cityoftulsa.org/our-city/meeting-agendas/all-agendas.aspx')
   listing.events (events) ->
-    console.log events
+    console.log events[0].meta
