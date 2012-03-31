@@ -14,12 +14,13 @@
     "node": "~0.6.11"
   },
   "scripts": {
-    "start": "coffee run.coffee",
+    "start": "coffee -w run.coffee",
     "debug": "coffee -w -n --debug port 5858 run.coffee",
     "test": ""
   },
   "dependencies": {
-    "coffee-script":"https://github.com/jashkenas/coffee-script/tarball/master"
+    "coffee-script": "https://github.com/jashkenas/coffee-script/tarball/master",
+    "jsdom": "0.2.x"
   },
   "devDependencies": {},
   "optionalDependencies": {}
