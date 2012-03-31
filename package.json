@@ -23,8 +23,8 @@
     "node": "~0.6.11"
   },
   "scripts": {
-    "start": "coffee -w server.coffee",
-    "debug": "coffee -w -n --debug port 5858 run.coffee",
+    "start": "coffee server.coffee",
+    "debug": "coffee -w --nodejs --debug server.coffee",
     "test": ""
   },
   "dependencies": {
