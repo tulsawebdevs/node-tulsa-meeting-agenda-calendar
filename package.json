@@ -1,0 +1,26 @@
+{
+  "author": "Patrick Forringer <patrick@forringer.com>",
+  "name": "TMC",
+  "description": "Scrapper that gathers upcoming tulsa meeting agenda's and creates an iCal feed",
+  "version": "0.0.1",
+  "bugs": {
+    "url": "https://github.com/tulsawebdevs/node-tulsa-meeting-agenda-calendar/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tulsawebdevs/node-tulsa-meeting-agenda-calendar.git"
+  },
+  "engines": {
+    "node": "~0.6.11"
+  },
+  "scripts": {
+    "start": "coffee run.coffee",
+    "debug": "coffee -w -n --debug port 5858 run.coffee",
+    "test": ""
+  },
+  "dependencies": {
+    "coffee-script":"https://github.com/jashkenas/coffee-script/tarball/master"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {}
+}
