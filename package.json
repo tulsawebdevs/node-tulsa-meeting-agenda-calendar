@@ -1,19 +1,13 @@
 {
   "contributors": [
-    {
-      "name": "Patrick Forringer",
-      "email": "patrick@forringer.com"
-    },
-    {
-      "name": "Tim Morgan",
-      "email": "tim@timmorgan.org"
-    }
+    "Patrick Forringer <patrick@forringer.com>",
+    "Tim Morgan <tim@timmorgan.org>"
   ],
   "name": "TMC",
   "subdomain": "tulsa-agenda",
   "description": "Scrapper that gathers upcoming tulsa meeting agenda's and creates an iCal feed",
   "home": "http://tulsa-agenda.jit.su/",
-  "version": "0.0.1-1",
+  "version": "0.0.2",
   "bugs": {
     "url": "https://github.com/tulsawebdevs/node-tulsa-meeting-agenda-calendar/issues"
   },
