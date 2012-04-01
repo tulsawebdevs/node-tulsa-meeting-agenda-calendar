@@ -7,7 +7,7 @@
   "subdomain": "tulsa-agenda",
   "description": "Scrapper that gathers upcoming tulsa meeting agenda's and creates an iCal feed",
   "home": "http://tulsa-agenda.jit.su/",
-  "version": "0.0.2",
+  "version": "0.0.2-1",
   "bugs": {
     "url": "https://github.com/tulsawebdevs/node-tulsa-meeting-agenda-calendar/issues"
   },
@@ -22,7 +22,9 @@
   "scripts": {
     "start": "coffee server.coffee",
     "debug": "coffee -w --nodejs --debug server.coffee",
-    "test": ""
+    "watch": "coffee -w server.coffee",
+    "compile": "coffee -wc ./",
+    "test": "mocha test/*.test.coffee"
   },
   "dependencies": {
     "coffee-script": "https://github.com/jashkenas/coffee-script/tarball/master",
@@ -30,6 +32,9 @@
     "moment": "1.5.x",
     "jsdom": "0.2.x"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "1.0.x",
+    "should": "0.6.x"
+  },
   "optionalDependencies": {}
 }
