@@ -44,8 +44,9 @@ module.exports = class CalFile
     cal = new icalendar.iCalendar()
     events.forEach (eventObj) ->
       event = new icalendar.VEvent()
-      event.setSummary(eventObj.title || '')
-      event.setDescription( eventObj.meta[0].title+ ": "+eventObj.meta[0].url)
+      event.setSummary( eventObj.title || '')
+      event.setDescription( eventObj.meta[0].title )
+      event.addProperty( 'URL;VALUE=URI', eventObj.meta[0].url )
       date = new moment eventObj.date
       event.setDate date.toDate(), date.add('days',1).toDate() 
       cal.addComponent event
