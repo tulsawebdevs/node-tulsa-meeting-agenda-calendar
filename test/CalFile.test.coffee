@@ -22,9 +22,6 @@ testEvents = [
 ]
 
 testFile = path.resolve( process.cwd(), 'test', 'tests.ics' )
-# emitter.setMaxListeners(20)
-
-# console.log process.cwd()
 
 removeTestFile = (file) ->
   try
