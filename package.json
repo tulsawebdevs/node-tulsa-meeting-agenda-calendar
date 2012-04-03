@@ -27,14 +27,14 @@
     "test": "mocha test/*.test.coffee"
   },
   "dependencies": {
-    "coffee-script": "https://github.com/jashkenas/coffee-script/tarball/master",
     "icalendar": "0.5.x",
     "moment": "1.5.x",
     "jsdom": "0.2.x"
   },
   "devDependencies": {
     "mocha": "1.0.x",
-    "should": "0.6.x"
+    "should": "0.6.x",
+    "coffee-script": "1.2.0"
   },
   "optionalDependencies": {}
 }

@@ -33,6 +33,8 @@ removeTestFile = (file) ->
   Adding events shouldn't error
   file should be written
   TODO: New instance of CalFile that interacts with same file should be able to read generated file.
+  TODO: after new events are added to CalFile reading functions should reflect those changed and a
+        new instance should be able to read the new file.
 ###
 
 describe "CalFile", ->

@@ -23,17 +23,17 @@ module.exports = class CalFile
     return @fd
     
   updateFile: (contents) ->
-    buffer = new Buffer(contents)
+    buffer = @fileContents = new Buffer(contents)
     return fs.writeSync(@getFD(),buffer,0,buffer.length) == buffer.length
     
   loadContents: () ->
     try
       return @fileContents = fs.readFileSync @fileName, 'binary'
     catch e
-      return false
+      throw new Error ("couldn't load #{@fileName}")
       
   getContents: () ->
-    return @loadContents() if @isOld() else @fileContents
+    return if @isOld() then @loadContents() else @fileContents
     
   isOld: () ->
     try
