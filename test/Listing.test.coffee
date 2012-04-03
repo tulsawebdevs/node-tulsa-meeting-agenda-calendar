@@ -1,4 +1,4 @@
-Listing = require '../Listing'
+Listing = require '../lib/Listing'
 
 describe "Listing", ->
 

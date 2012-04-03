@@ -1,4 +1,4 @@
-CalFile = require '../CalFile'
+CalFile = require '../lib/CalFile'
 fs = require 'fs'
 path = require 'path'
 icalendar = require 'icalendar'
