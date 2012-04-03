@@ -10,21 +10,21 @@ module.exports = class Listing
   metaUrl: (window, a) ->
     a = window.$(a)
     url = a.attr('href')
-    url = "http://cityoftulsa.org#{url}" unless url.match(/^https?:/)
-    title: a.html()
-    url: url
+    type: a.text()
+    url: "http://cityoftulsa.org#{url}" unless url.match(/^https?:/)
 
   eventFromRow: (window, row) ->
     cols  = window.$(row).find('td')
-    date:  cols.eq(0).html()
-    title: cols.eq(1).html()
-    meta:  (@metaUrl(window, a) for a in cols.eq(2).find('a'))
+    date:  cols.eq(0).text()
+    title: cols.eq(1).text()
+    meta:  @metaUrl(window, cols.eq(2).find('a').eq(0))
 
   events: (callback) ->
+    throw new Error('.events() needs a callback') if typeof callback != 'function'
     jsdom.env @url, [@jquery], (err, window) =>
       if err then throw err
       rows = window.$('#agendaList table>tr:not(:first,:last,:nth-child(2))')
-      callback (@eventFromRow(window, row) for row in rows when window.$(row).find('td').length == 3)
+      callback (@eventFromRow(window, row) for row in rows ) # when window.$(row).find('td').length == 3
 
 unless module.parent
   listing = new Listing('http://cityoftulsa.org/our-city/meeting-agendas/all-agendas.aspx')

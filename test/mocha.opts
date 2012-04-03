@@ -4,4 +4,4 @@
 --ui bdd
 --growl
 --watch
---timeout 200
+--timeout 6000

@@ -54,15 +54,15 @@ module.exports = class CalFile
     events.forEach (eventObj, i) ->
       # hash it
       secretKey = eventObj.title+"|"+eventObj.date
-      uid = crypto.createHmac( 'sha1', secretKey ).update( eventObj.meta[0].url ).digest('base64')
+      uid = crypto.createHmac( 'sha1', secretKey ).update( eventObj.meta.url ).digest('base64')
       
       # create a new iCal event
       event = new icalendar.VEvent( uid )
       event.setSummary( eventObj.title || '')
-      event.setDescription( eventObj.meta[0].title )
+      event.setDescription( eventObj.meta.type )
       
       # Add url
-      event.addProperty( 'URL;VALUE=URI', eventObj.meta[0].url )
+      event.addProperty( 'URL;VALUE=URI', eventObj.meta.url )
       date = new moment eventObj.date
       
       # event.setDate date.toDate(), date.add('days',1).toDate() 

@@ -8,20 +8,20 @@ testEvents = [
   {
     title: 'Test Title 1'
     date: '02-05-1980'
-    meta:[
-      {title:'AGENDA',url: 'http://somewebsite.com/agenda?=1230345'}
-    ]
+    meta:
+      type:'AGENDA'
+      url: 'http://somewebsite.com/agenda?=1230345'
   }
   {
     title: 'Test Title 2'
     date: '01-25-1986'
-    meta:[
-      {title:'NOTICE',url: 'http://somewebsite.com/agenda?=198345'}
-    ]
+    meta:
+      type:'NOTICE'
+      url: 'http://somewebsite.com/agenda?=198345'
   }
 ]
 
-testFile = path.resolve( process.cwd(), 'test', 'tests.ics' )
+testFile = path.resolve( process.cwd(), 'test', 'support', 'tests.ics' )
 
 removeTestFile = (file) ->
   try
@@ -60,7 +60,8 @@ describe "CalFile", ->
       contents = cal.loadContents()
       contents.should.be.a('string')
       ical = icalendar.parse_calendar(contents)
-      # console.log ical.events()
+      # events = ical.events()
+      
     it "should return false if file doesn't exist", ->
       cal = new CalFile('non-written-file.ics')
       cal.loadContents().should.be.false
@@ -81,7 +82,7 @@ describe "CalFile", ->
       cal.isOld().should.be.true
     # this test may fail on a clone
     it "return true if file is old", ->
-      cal = new CalFile path.resolve process.cwd(), 'test', 'download.ics'
+      cal = new CalFile path.resolve process.cwd(), 'test', 'support', 'download.ics'
       cal.isOld().should.be.true
     it "return false if file is a directory", ->
       cal = new CalFile(process.cwd())
@@ -90,7 +91,9 @@ describe "CalFile", ->
   describe ".createCal()", ->
     written = null
     it "shouldn't error when adding events", ->
-      written = cal.createCal(testEvents)
+      ( ->
+        written = cal.createCal(testEvents)
+      ).should.not.throw()
     it "should confirm file written", ->
       written.should.be.true
       
