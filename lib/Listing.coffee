@@ -24,7 +24,7 @@ module.exports = class Listing
     jsdom.env @url, [@jquery], (err, window) =>
       if err then throw err
       rows = window.$('#agendaList table>tr:not(:first,:last,:nth-child(2))')
-      callback (@eventFromRow(window, row) for row in rows ) # when window.$(row).find('td').length == 3
+      callback (@eventFromRow(window, row) for row in rows when window.$(row).find('td').length == 3)
 
 unless module.parent
   listing = new Listing('http://cityoftulsa.org/our-city/meeting-agendas/all-agendas.aspx')

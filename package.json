@@ -18,18 +18,21 @@
   "engines": {
     "node": "~0.6.11"
   },
-  "main": "./server.coffee",
+  "main": "./lib/server.coffee",
   "scripts": {
-    "start": "coffee server.coffee",
-    "debug": "coffee -w --nodejs --debug server.coffee",
-    "watch": "coffee -w server.coffee",
+    "start": "coffee ./lib/server.coffee",
+    "debug": "coffee -w --nodejs --debug ./lib/server.coffee",
+    "watch": "coffee -w ./lib/server.coffee",
     "compile": "coffee -wc ./",
     "test": "mocha test/*.test.coffee"
   },
   "dependencies": {
     "icalendar": "0.5.x",
     "moment": "1.5.x",
-    "jsdom": "0.2.x"
+    "jsdom": "0.2.x",
+    "express": "2.5.0",
+    "rss": "0.0.3",
+    "step": "0.0.5"
   },
   "devDependencies": {
     "mocha": "1.0.x",
