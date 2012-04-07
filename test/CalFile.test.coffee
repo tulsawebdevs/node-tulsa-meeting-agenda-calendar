@@ -64,9 +64,11 @@ describe "CalFile", ->
       ical = icalendar.parse_calendar(contents)
       # events = ical.events()
       
-    it "should return false if file doesn't exist", ->
+    it "should throw an error if file doesn't exist", ->
       cal = new CalFile('non-written-file.ics')
-      cal.loadContents().should.be.false
+      ( () ->
+        cal.loadContents()
+      ).should.throw()
       
   # describe ".getContents()", ->
   #   it "returns the contents of the file", ->
