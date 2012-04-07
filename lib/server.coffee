@@ -40,8 +40,8 @@ TAevents: null
   
 requests = 
   info: (req,res) ->
-    res.contentType ".txt"
-    res.end('agenda.json, agenda.ics, agenda.rss')
+    res.contentType ".html"
+    res.end('<a href="/agenda.json">agenda.json</a>, <a href="/agenda.ics">agenda.ics</a>, <a href="/agenda.rss">agenda.rss</a>')
   format: (req,res) ->
     
     # filter/strip
@@ -122,7 +122,7 @@ app.get '/', (req,res) ->
   req.params.format = 'ics'
   requests.format(req,res)
 
-app.get '/readme.txt', (req,res) ->
+app.get '/readme', (req,res) ->
   requests.info(req,res)
 
 app.get '/agenda.:format?', (req,res) ->
