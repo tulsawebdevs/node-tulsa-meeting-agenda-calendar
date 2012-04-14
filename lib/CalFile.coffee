@@ -1,7 +1,7 @@
 fs = require 'fs'
 moment = require 'moment'
 icalendar = require 'icalendar'
-crypto = require 'crypto'
+# crypto = require 'crypto'
 
 module.exports = class CalFile
   constructor: (@fileName) ->
@@ -54,10 +54,9 @@ module.exports = class CalFile
     events.forEach (eventObj, i) ->
       # hash it
       secretKey = eventObj.title+"|"+eventObj.date
-      uid = crypto.createHmac( 'sha1', secretKey ).update( eventObj.meta.url ).digest('base64')
-      
+      # uid = crypto.createHmac( 'sha1', secretKey ).update( eventObj.meta.url ).digest('base64')
       # create a new iCal event
-      event = new icalendar.VEvent( uid )
+      event = new icalendar.VEvent( eventObj.id )
       event.setSummary( eventObj.title || '')
       event.setDescription( eventObj.meta.type )
       

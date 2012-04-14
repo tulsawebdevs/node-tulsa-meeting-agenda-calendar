@@ -10,7 +10,7 @@ moment = require 'moment'
 app = module.exports = express.createServer()
 
 app.configure ->  
-  # app.use express.logger ' \033[90m:method\033[0m \033[36m:url\033[0m \033[90m:response-time ms\033[0m'
+  app.use express.logger ':method :url :response-time ms'
   
   app.use express.bodyParser()
   # app.use express.methodOverride()
@@ -30,13 +30,12 @@ calFile = new CalFile( path.resolve process.pwd, 'data', 'agenda.ics' )
 listing = new Listing('http://cityoftulsa.org/our-city/meeting-agendas/all-agendas.aspx')
 
 lastRun = null
+diff = null
 
 compiled =
   ics: null
   rss: null
   json: null
-  
-TAevents: null
   
 requests = 
   info: (req,res) ->
@@ -46,22 +45,17 @@ requests =
     
     # filter/strip
     format = req.params.format.replace(/[^A-Za-z]/g,'')
-    console.log format
     
     step( () ->
       
       # refresh every 12 hours
       if lastRun != null
         diff = new moment().diff(lastRun,'hours')
-        console.log diff
+        console.log "#{diff} hours since last refresh, generated #{lastRun}"
         
       if( lastRun is null || diff >= 12 )
-        console.log 're-getting listing'
         lastRun = new moment()
-        listing.events (returnedEvents) =>
-          TAevents = returnedEvents
-          @( null, returnedEvents )
-          return
+        listing.events @
         return undefined
       else
         @( null, null )
@@ -70,10 +64,15 @@ requests =
     , (err, events) ->
       
       throw err if err
-      if( events != null ) #&& TAevents != null 
+      
+      if( events != null )
         
         # JSON
-        compiled.json = events
+        compiled.json = 
+          generated:
+            unix: lastRun.valueOf()
+            date: lastRun.format("dddd, MMMM Do YYYY, h:mm:ss a")
+          events: events
         
         # Create iCal
         calFile.createCal(events)
@@ -92,7 +91,7 @@ requests =
             title: event.title
             description: event.meta.type
             url: event.meta.url
-            # guid:
+            guid: event.id
             # author:
             date: event.date
       
@@ -104,7 +103,7 @@ requests =
       switch format
         when 'json'
           res.json compiled.json || {}
-        when 'ics'    
+        when 'ics'
           res.send compiled.ics || ""
         when 'rss'
           res.send compiled.rss || ""
@@ -128,10 +127,10 @@ app.get '/readme', (req,res) ->
 app.get '/agenda.:format?', (req,res) ->
   requests.format(req,res)
 
-process.on 'uncaughtException', (e) ->
-  console.dir(e)
-  console.dir(e.stack)
-  return
+# process.on 'uncaughtException', (e) ->
+#   # console.dir(e)
+#   # console.dir(e.stack)
+#   return
   
 if (!module.parent)
   app.listen process.env.PORT || 4510
