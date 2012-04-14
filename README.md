@@ -6,6 +6,7 @@ currently online at [tulsa-agenda.jit.su/readme](http://tulsa-agenda.jit.su/read
 * git
 * node.js >= 0.6.10
 * coffee-script
+
 ##Getting the Code
 ```
 git clone git@github.com:tulsawebdevs/node-tulsa-meeting-agenda-calendar.git
