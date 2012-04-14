@@ -7,7 +7,7 @@
   "subdomain": "tulsa-agenda",
   "description": "Scrapper that gathers upcoming tulsa meeting agenda's and creates an iCal feed",
   "home": "http://tulsa-agenda.jit.su/",
-  "version": "0.0.3-1",
+  "version": "0.0.4",
   "bugs": {
     "url": "https://github.com/tulsawebdevs/node-tulsa-meeting-agenda-calendar/issues"
   },
