@@ -1,8 +1,7 @@
 **This project is archived.**
 
 # Why
-* open and shareable data is better than closed and locked down.
-* currently online at [tulsa-agenda.jit.su/readme](http://tulsa-agenda.jit.su/readme)
+Open and shareable data is better than closed and locked down.
 # Setup
 ## Requirements
 * git
